@@ -19,7 +19,7 @@ Test REST API with curl
 ```
 curl -H "Content-Type: application/json" -v http://localhost:8080/users/
 
-[{"ID":2,"Name":"Doe","Age":22,"City":"Vancouver"},{"ID":1,"Name":"John","Age":31,"City":"New York"}]
+[{"id":1,"name":"John","age":31,"city":"New York"},{"id":2,"name":"Doe","age":22,"city":"Vancouver"}]
 ```
 
 ```
