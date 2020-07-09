@@ -10,7 +10,9 @@ GET http://localhost:8080/user/{id:[0-9]+}
 
 ### Examples
 http://localhost:8080/
+
 http://localhost:8080/users/
+
 http://localhost:8080/user/2
 
 Test REST API with curl
