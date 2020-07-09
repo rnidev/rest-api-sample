@@ -101,10 +101,19 @@ func (app *App) createOrUpdateUser(w http.ResponseWriter, r *http.Request) {
 
 func (app *App) getUsers(w http.ResponseWriter, r *http.Request) {
 	conn := app.pool.Get()
-	users, err := v1.ListAllUsers(conn)
+	usersData, err := v1.ListAllUsers(conn)
 	if err != nil {
 		renderJSONErrorResp(w, http.StatusInternalServerError, err)
 		return
+	}
+	var users []User
+	for _, userData := range usersData {
+		var user User
+		user.ID = userData.ID
+		user.Name = userData.Name
+		user.Age = userData.Age
+		user.City = userData.City
+		users = append(users, user)
 	}
 	renderJSONResp(w, http.StatusOK, users)
 }

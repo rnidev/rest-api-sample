@@ -6,9 +6,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/alicebob/miniredis"
 	"github.com/gomodule/redigo/redis"
-
-	"github.com/alicebob/miniredis/v2"
 )
 
 func setup() *App {
@@ -90,7 +89,7 @@ func TestGetUsersSuccess(t *testing.T) {
 	if rr.Code != http.StatusOK {
 		t.Errorf("http status code: got %v, expected %v", rr.Code, http.StatusOK)
 	}
-	expected := `[{"ID":1,"Name":"John","Age":31,"City":"New York"},{"ID":2,"Name":"Doe","Age":22,"City":"Vancouver"}]`
+	expected := `[{"id":1,"name":"John","age":31,"city":"New York"},{"id":2,"name":"Doe","age":22,"city":"Vancouver"}]`
 	if rr.Body.String() != expected {
 		t.Errorf("response body: got %v, expected %v", rr.Body.String(), expected)
 	}
