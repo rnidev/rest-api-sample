@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    depends_on:
+      - redis
+    environment:
+      REDIS_URL: redis:6379
+      REDIS_PASSWORD: :}bv3/F+55g8#5/R
+      PORT: 8080
+    networks:
+      - go-rest-network
+
+  redis:
+    image: "redis:alpine"
+    command: redis-server --requirepass :}bv3/F+55g8#5/R
+    restart: unless-stopped
+    networks:
+      - go-rest-network
+
+networks:
+  go-rest-network:
